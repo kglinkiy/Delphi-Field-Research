@@ -1,0 +1,49 @@
+object Demo: TDemo
+  Left = 0
+  Top = 0
+  Caption = 'Demonstration '
+  ClientHeight = 915
+  ClientWidth = 1262
+  Color = clBtnHighlight
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -14
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 120
+  TextHeight = 17
+  object PaintBox1: TPaintBox
+    Left = 8
+    Top = 8
+    Width = 953
+    Height = 865
+  end
+  object BitBtn1: TBitBtn
+    Left = 967
+    Top = 97
+    Width = 257
+    Height = 65
+    Caption = #1050#1086#1085#1076#1077#1085#1089#1072#1090#1086#1088
+    TabOrder = 0
+    OnClick = BitBtn1Click
+  end
+  object BitBtn2: TBitBtn
+    Left = 967
+    Top = 168
+    Width = 257
+    Height = 65
+    Caption = #1044#1074#1072' '#1079#1072#1088#1103#1076#1072' "+"'
+    TabOrder = 1
+    OnClick = BitBtn2Click
+  end
+  object BitBtn3: TBitBtn
+    Left = 967
+    Top = 239
+    Width = 257
+    Height = 51
+    Caption = #1056#1072#1079#1085#1086#1080#1084#1077#1085#1085#1099#1077' '#1079#1072#1088#1103#1076#1099
+    TabOrder = 2
+    OnClick = BitBtn3Click
+  end
+end

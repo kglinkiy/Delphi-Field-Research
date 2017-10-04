@@ -1,0 +1,32 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  Align = alClient
+  Caption = 'Form3'
+  ClientHeight = 915
+  ClientWidth = 1263
+  Color = clWhite
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 120
+  TextHeight = 16
+  object Button1: TButton
+    Left = 520
+    Top = 795
+    Width = 393
+    Height = 73
+    Caption = #1052#1077#1085#1102
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -38
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 0
+    OnClick = Button1Click
+  end
+end

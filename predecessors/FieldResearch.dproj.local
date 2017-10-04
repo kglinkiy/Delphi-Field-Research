@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.613,=E:\Delphi Field Research\Unit9.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.425,=F:\Delphi Field Research\Unit5.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.888,=D:\Delphi Field Research\Unit10.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.717,=F:\Delphi Field Research\Unit8.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.046,E:\Delphi Field Research\Unit10.pas=D:\Delphi Field Research\Unit10.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.456,=F:\Delphi Field Research\Unit7.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.bdsproj,D:\Delphi Field Research\FieldResearch.bdsproj=C:\Users\KIRILL\Documents\Borland Studio Projects\Project6.bdsproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.106,=F:\Delphi Field Research\10G\!_Classes\Class_Charge_2\main.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.dfm,D:\Delphi Field Research\zastavka.dfm=C:\Users\KIRILL\Documents\Borland Studio Projects\Unit6.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.pas,D:\Delphi Field Research\zastavka.pas=C:\Users\KIRILL\Documents\Borland Studio Projects\Unit6.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.046,E:\Delphi Field Research\Unit10.dfm=D:\Delphi Field Research\Unit10.dfm</Transaction>
+    <Transaction>2015.05.03 11:19:40.620,E:\Delphi Field Research\predecessors\FieldResearch.dproj=E:\Delphi Field Research\FieldResearch.dproj</Transaction>
+    <Transaction>2015.05.03 11:19:55.567,E:\Delphi Field Research\10G\!_Classes\Class_Charge_2\__history\main.pas=E:\Delphi Field Research\10G\!_Classes\Class_Charge_2\main.pas</Transaction>
+    <Transaction>2015.05.03 11:19:55.567,E:\Delphi Field Research\10G\!_Classes\Class_Charge_2\__history\main.dfm=E:\Delphi Field Research\10G\!_Classes\Class_Charge_2\main.dfm</Transaction>
+    <Transaction>2015.05.03 11:21:00.809,E:\Delphi Field Research\10G\!_Classes\Class_Charge_2\main1.dfm=E:\Delphi Field Research\10G\!_Classes\Class_Charge_2\__history\main.dfm</Transaction>
+    <Transaction>2015.05.03 11:21:00.809,E:\Delphi Field Research\10G\!_Classes\Class_Charge_2\main1.pas=E:\Delphi Field Research\10G\!_Classes\Class_Charge_2\__history\main.pas</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,105 @@
+unit main;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.StdCtrls,
+  Vcl.Samples.Spin;
+
+type
+
+//=====================================CLASS FORM
+  TfMain = class(TForm)
+    btnShow: TSpeedButton;
+    edtName: TEdit;
+    isGreen: TCheckBox;
+    mmoOutput: TMemo;
+    edtDiameter: TSpinEdit;
+    isDiameterless: TCheckBox;
+    procedure btnShowClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+//=====================================CLASS FRUIT
+  Fruit = class
+    private
+      _name : string;
+      _diameter : integer;
+      _isGreen : boolean;
+    public
+      Constructor New(name: string ; diameter : integer ; isGreen : boolean);Overload;
+      Constructor New(edtName : TEdit ; isDiameterless : tCheckbox; edtDiameter : TSpinEdit ; isGreen : TCheckbox);Overload;
+
+      function GetName():string;
+      function GetDiameter():integer;
+      function GetIsGreen():boolean;
+  end;
+
+var
+  fMain: TfMain;
+  fr_dull,fr_processed,fr_direct : Fruit;
+
+implementation
+
+{$R *.dfm}
+
+  Constructor Fruit.New(name: string ; diameter : integer ; isGreen : boolean);
+  begin
+    self._name := name;
+    self._diameter := diameter;
+    self._isGreen := isGreen;
+  end;
+
+  Constructor Fruit.New(edtName: TEdit; isDiameterless : tCheckbox; edtDiameter: TSpinEdit; isGreen: TCheckBox);
+  begin
+    self._name := edtName.Text;
+    if(isDiameterless.Checked)
+    then
+      self._diameter := -1
+    else
+      self._diameter := edtDiameter.Value;
+
+    self._isGreen := isGreen.Checked;
+  end;
+
+
+  function Fruit.GetName():string;
+  begin
+    result:=self._name;
+  end;
+
+  function Fruit.GetDiameter():integer;
+  begin
+    result:=self._diameter;
+  end;
+
+  function Fruit.GetIsGreen():boolean;
+  begin
+    result:=self._isGreen;
+  end;
+
+//  end;
+procedure TfMain.btnShowClick(Sender: TObject);
+begin
+fMain.mmoOutput.Lines.Clear;
+
+  fr_dull := Fruit.New('banana',-1,True);
+
+    if(fMain.isDiameterless.Checked)
+    then
+      fr_processed := Fruit.New(fMain.edtName.Text,-1,fMain.isGreen.Checked)
+    else
+      fr_processed := Fruit.New(fMain.edtName.Text,fMain.edtDiameter.Value,fMain.isGreen.Checked);
+
+  fr_direct := Fruit.New(fMain.edtName,fMain.isDiameterless,fMain.edtDiameter, fMain.isGreen);
+
+  fMain.mmoOutput.Lines.Add('/Fruit 1/ name == '+fr_dull.GetName+'; diameter == '+inttostr(fr_dull.GetDiameter)+'; isGreeen == '+fr_dull.GetIsGreen.ToString());
+    fMain.mmoOutput.Lines.Add('/Fruit 2/ name == '+fr_processed.GetName+'; diameter == '+inttostr(fr_processed.GetDiameter)+'; isGreeen == '+fr_processed.GetIsGreen.ToString());
+      fMain.mmoOutput.Lines.Add('/Fruit 3/ name == '+fr_direct.GetName+'; diameter == '+inttostr(fr_direct.GetDiameter)+'; isGreeen == '+fr_direct.GetIsGreen.ToString());
+end;
+
+end.

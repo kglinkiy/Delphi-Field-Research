@@ -1,0 +1,220 @@
+unit Unit7;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,system.Types,Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
+
+type
+  TDemo = class(TForm)
+    PaintBox1: TPaintBox;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    procedure BitBtn2Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+       private
+    { Private declarations }
+  public
+    { Public declarations }
+
+  end;
+
+var
+  Demo: TDemo;
+ implementation
+{$R *.dfm}
+
+procedure TDemo.BitBtn1Click(Sender: TObject);
+var
+charge:array of integer;
+points:array of tpoint;
+linenumber,k,z,m,i,length:integer;
+ e,r,cosa,sina:array of extended;
+                  angle,x,y,eint,ex,ey:extended;
+begin
+length:=400;
+linenumber:=5 ;
+setlength(points,length*2);
+setlength(r,length*2) ;
+setlength(charge,length*2) ;
+setlength(e,length*2) ;
+setlength(cosa,length*2) ;
+setlength(sina,length*2) ;
+for i := 0 to length do
+   begin
+    points[i]:=point(300+i,300);
+     points[i+length]:=point(300+i,400)  ;
+           charge[i]:=-1;
+           charge[i+length]:=1
+   end;
+
+                           for m := 0 to length do
+                             begin
+                               for z := 1 to linenumber do
+                               begin
+
+
+                                  angle:=2*pi*(z/linenumber);
+                                 x:=points[m].X+5*cos(angle) ;
+                                   y:=points[m].y+5*sin(angle)  ;
+
+                                  while (x<paintbox1.Width) and (y<paintbox1.Height)and (x>0) and (y>0)and  (k<2000) do
+                                  begin
+                                   ex:=0;
+                                  ey:=0;
+                                  for i := 0 to length*2 do
+                                                                     begin
+                                                                        paintbox1.Canvas.Pixels[points[i].x,points[i].y]:=clblack  ;
+                                    r[i]:=sqrt(sqr(x-points[i].X)+sqr(y-points[i].y)) ;
+                                  e[i]:=charge[i]/sqr(r[i])  ;
+                                      cosa[i]:=(x-points[i].X)/r[i];
+                                       sina[i]:=(y-points[i].y)/r[i];
+                                       ex:=ex+e[i]*cosa[i] ;
+                                            ey:=ey+e[i]*sina[i] ;
+                                                 end;
+                                                 eint:=sqrt(sqr(ex)+sqr(ey));
+                                     paintbox1.Canvas.Pixels[round(x),round(y)]:=clgray  ;
+                                     x:=x+(ex/eint);
+                                       y:=y+(ey/eint) ;
+                                                     k:=k+1
+                                                                              end;
+                               end;
+                                   end;
+                                  end;
+
+procedure TDemo.BitBtn2Click(Sender: TObject);  //2 charge positive and negative
+var
+q1,q2,q3,npixel, x1,x2,x3,y1,y2,y3,i,k,linenumber,m:integer;
+r1,r2,r3,e1,e2,e3,sina1,cosa1,sina2,cosa2,sina3,cosa3,ex,ey, e,x,y,z:real;
+             xord,ycord:array of integer  ;
+begin
+
+     q1:=1   ;
+
+     q3:=1;
+     k:=0;
+        x1:=350;
+        x3:=650    ;
+        y1:=200 ;
+        y3:=200;
+                linenumber:=60;
+                npixel:=5 ;
+        paintbox1.Canvas.Ellipse(x1-5,y1-5,x1+5,y1+5);
+          paintbox1.Canvas.Ellipse(x3-5,y3-5,x3+5,y3+5);
+
+              setlength(xord,1);
+                             setlength(ycord,1);
+                              xord[0]:=x1;
+                               xord[1]:=x3;
+
+                                   ycord[0]:=y1;
+                               ycord[1]:=y3;
+
+                            for m := 0 to  3 do
+                                           begin
+                       for i:=1 to linenumber do
+
+                    begin
+                                  z:=(i/linenumber);
+
+                                                         x:=xord[m]+npixel*cos(3.1415*2*z)        ;
+                            y:=ycord[m]+npixel*sin(3.1415*2*z)   ;
+                                 while (x<paintbox1.width) and (y<paintbox1.height) and (x>0) and (y>0) do
+                                      begin
+                                r1:=sqrt(sqr(x-x1)+sqr(y-y1))  ;      //distance betwwen first charge and point
+
+                              r3:=sqrt(sqr(x-x3)+sqr(y-y3)) ;    //between second charge             ;
+                                  e1:=(q1/sqr(r1));
+                                                                e3:=(q3/sqr(r3));
+                    sina1:=(y-y1)/r1   ;
+
+                         sina3:=(y-y3)/r3 ;
+                      cosa1:=(x-x1)/r1;
+                                            cosa3:=(x-x3)/r3;
+                          ex:=e1*cosa1+e3*cosa3  ;
+                           ey:=e1*sina1+e3*sina3;
+                           e:=sqrt(sqr(ex)+sqr(ey));
+                              paintbox1.Canvas.Pixels[round(x),round(y)]:=clblack;
+                             x:=x+(ex/e);
+                           y:=y+(ey/e) ;
+                                                                                                end;
+                        end;
+            end;
+                       end;
+
+
+procedure TDemo.BitBtn3Click(Sender: TObject);
+var
+q1,q2,q3,npixel, x1,x2,x3,y1,y2,y3,i,k,linenumber,m:integer;
+r1,r2,r3,e1,e2,e3,sina1,cosa1,sina2,cosa2,sina3,cosa3,ex,ey, e,x,y,z:real;
+             xord,ycord:array of integer  ;
+begin
+
+
+     q1:=1   ;
+
+     q3:=-1;
+     k:=0;
+        x1:=350;
+           ;
+     //   x2:=500  ;
+        x3:=650    ;
+        y1:=200 ;
+   //     y2:=400;
+        y3:=200;
+                linenumber:=60;
+                npixel:=5 ;
+        paintbox1.Canvas.Ellipse(x1-5,y1-5,x1+5,y1+5);
+          paintbox1.Canvas.Ellipse(x3-5,y3-5,x3+5,y3+5);
+
+              setlength(xord,1);
+                             setlength(ycord,1);
+                              xord[0]:=x1;
+                               xord[1]:=x3;
+                               //    xord[2]:=x3;
+                                   ycord[0]:=y1;
+                               ycord[1]:=y3;
+                                 //  ycord[2]:=y3;
+
+                            for m := 0 to 2 do
+                                           begin
+                       for i:=1 to linenumber do
+
+                    begin
+                                  z:=(i/linenumber);
+
+                            x:=xord[m]+npixel*cos(3.1415*2*z)        ;
+                            y:=ycord[m]+npixel*sin(3.1415*2*z)   ;
+                            k:=0;
+                                 while (x<paintbox1.width) and (y<paintbox1.height) and (x>0) and (y>0)and  (k<20000)   do
+                                      begin
+                                r1:=sqrt(sqr(x-x1)+sqr(y-y1))  ;      //distance betwwen first charge and point
+                            ;
+                              r3:=sqrt(sqr(x-x3)+sqr(y-y3)) ;    //between second charge             ;
+                                  e1:=(q1/sqr(r1));
+
+                                   e3:=(q3/sqr(r3));
+                    sina1:=(y-y1)/r1   ;
+
+                         sina3:=(y-y3)/r3 ;
+                      cosa1:=(x-x1)/r1;
+
+                          cosa3:=(x-x3)/r3;
+                          ex:=e1*cosa1+e3*cosa3  ;
+                           ey:=e1*sina1+e3*sina3;
+                           e:=sqrt(sqr(ex)+sqr(ey));
+                              paintbox1.Canvas.Pixels[round(x),round(y)]:=clblack  ;
+                             x:=x+(ex/e);
+                           y:=y+(ey/e) ;
+
+                                      k:=k+1;
+                               end;
+                        end;
+            end;
+
+end;
+
+end.

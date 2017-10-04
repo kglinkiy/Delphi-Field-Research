@@ -1,0 +1,56 @@
+object fMain: TfMain
+  Left = 0
+  Top = 0
+  Caption = 'fMain'
+  ClientHeight = 152
+  ClientWidth = 533
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object btnShow: TSpeedButton
+    Left = 303
+    Top = 8
+    Width = 97
+    Height = 22
+    OnClick = btnShowClick
+  end
+  object edtName: TEdit
+    Left = 406
+    Top = 8
+    Width = 121
+    Height = 21
+    TabOrder = 0
+    Text = 'edtName'
+  end
+  object edtDiameter: TEdit
+    Left = 406
+    Top = 35
+    Width = 121
+    Height = 21
+    TabOrder = 1
+    Text = 'Edit1'
+  end
+  object isGreen: TCheckBox
+    Left = 406
+    Top = 62
+    Width = 97
+    Height = 17
+    Caption = 'isGreen'
+    TabOrder = 2
+  end
+  object mmoOutput: TMemo
+    Left = 8
+    Top = 8
+    Width = 289
+    Height = 137
+    Lines.Strings = (
+      'mmoOutput')
+    TabOrder = 3
+  end
+end

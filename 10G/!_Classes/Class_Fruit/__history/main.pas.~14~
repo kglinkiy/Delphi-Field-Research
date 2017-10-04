@@ -1,0 +1,78 @@
+unit main;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.StdCtrls,
+  Vcl.Samples.Spin;
+
+type
+
+//=====================================CLASS FORM
+  TfMain = class(TForm)
+    btnShow: TSpeedButton;
+    edtName: TEdit;
+    isGreen: TCheckBox;
+    mmoOutput: TMemo;
+    edtDiameter: TSpinEdit;
+    isDiameterless: TCheckBox;
+    procedure btnShowClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+//=====================================CLASS FRUIT
+  Fruit = class
+    private
+      _name : string;
+      _diameter : integer;
+      _isGreen : boolean;
+    public
+      Constructor New(name: string ; diameter : integer ; isGreen : boolean);Overload;
+      Constructor New(edtName : TEdit ; isDiameterless : tCheckbox; edtDiameter : TSpinEdit ; isGreen : TCheckbox);Overload;
+  end;
+
+var
+  fMain: TfMain;
+  fr_dull,fr_processed,fr_direct : Fruit;
+
+implementation
+
+{$R *.dfm}
+
+  Constructor Fruit.New(name: string ; diameter : integer ; isGreen : boolean);
+  begin
+    self._name := name;
+    self._diameter := diameter;
+    self._isGreen := isGreen;
+  end;
+
+  Constructor Fruit.New(edtName: TEdit; isDiameterless : tCheckbox; edtDiameter: TSpinEdit; isGreen: TCheckBox);
+  begin
+    self._name := edtName.Text;
+    if(isDiameterless.Checked)
+    then
+      self._diameter := -1
+    else
+      self._diameter := edtDiameter.Value;
+
+    self._isGreen := isGreen.Checked;
+  end;
+
+procedure TfMain.btnShowClick(Sender: TObject);
+begin
+  fr_dull := Fruit.New('banana',-1,True);
+
+    if(fMain.isDiameterless.Checked)
+    then
+      fr_processed := Fruit.New(fMain.edtName,-1,fMain.isGreen.Checked)
+    else
+      fr_processed := Fruit.New(fMain.edtName,fMain.edtDiameter.Value,fMain.isGreen);
+
+  fr_direct := Fruit.New(fMain.edtName,fMain.isDiameterless,fMain.edtDiameter, fMain.isGreen);
+end;
+
+end.

@@ -1,0 +1,174 @@
+unit zastavka;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, jpeg, ExtCtrls, Buttons;
+
+type
+  TForm6 = class(TForm)
+    Label2: TLabel;
+    Label3: TLabel;
+    Label1: TLabel;
+    PaintBox1: TPaintBox;
+    procedure Image2Click(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure PaintBox1Paint(Sender: TObject);
+    //procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form6: TForm6;
+
+implementation
+
+uses Unit2;
+
+{$R *.dfm}
+
+
+procedure TForm6.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+if key=#13 then form2.show ;
+  if key=#27 then application.Terminate;
+
+end;
+
+procedure TForm6.Image2Click(Sender: TObject);
+begin
+form2.show;
+
+end;
+
+
+procedure TForm6.PaintBox1Paint(Sender: TObject);
+var
+q1,q2,q3,q4,npixel,npixel1, x1,x2,x3,y1,y2,y3,x4,y4,i,k,linenumber,m:integer;
+r1,r2,r3,r4,e1,e2,e3,e4,sina1,cosa1,sina2,cosa2,sina3,cosa3,sina4,cosa4,ex,ey, e,x,y,z:real;
+             xord,ycord:array of integer  ;
+begin
+
+     q1:=1   ;
+   q2:=1;
+    q3:=1;
+    q4:=-1 ;
+     k:=0;
+        x1:=450;
+        x2:=600  ;
+        x3:=750    ;
+        x4:=600;
+        y1:=200 ;
+       y2:=400;
+        y3:=200;
+        y4:=300 ;
+
+                linenumber:=12;
+                npixel:=150 ;
+npixel1:=5   ;
+        paintbox1.Canvas.Ellipse(x1-5,y1-5,x1+5,y1+5);
+          paintbox1.Canvas.Ellipse(x3-5,y3-5,x3+5,y3+5);
+                                         paintbox1.Canvas.Ellipse(x2-5,y2-5,x2+5,y2+5);
+                                            paintbox1.Canvas.Ellipse(x4-5,y4-5,x4+5,y4+5);
+
+
+              setlength(xord,3);
+                             setlength(ycord,3);
+                              xord[0]:=x1;
+                               xord[1]:=x3;
+                                  xord[2]:=x3;
+                                  xord[3]:=x4 ;
+                                   ycord[0]:=y1;
+                               ycord[1]:=y3;
+                                   ycord[2]:=y3;
+                                   ycord[3]:=y4  ;
+
+                            for m := 0 to   3 do
+                                           begin
+                       for i:=1 to linenumber do
+
+                    begin
+                                  z:=(i/linenumber);
+
+
+                            //   label2.Caption:=floattostr(z);
+                            x:=xord[m]+npixel*cos(3.1415*2*z)        ;
+                            y:=ycord[m]+npixel*sin(3.1415*2*z)   ;
+                            k:=0;
+                                 while (x<paintbox1.width)  and (y<paintbox1.height) and (x>0) and (y>0) and (k<2000) do
+                                      begin
+                                r1:=sqrt(sqr(x-x1)+sqr(y-y1))  ;      //distance betwwen first charge and point
+                                r2:=sqrt(sqr(x-x2)+sqr(y-y2))      ;
+                              r3:=sqrt(sqr(x-x3)+sqr(y-y3)) ;
+                                r4:=sqrt(sqr(x-x4)+sqr(y-y4)) ;   //between second charge             ;
+                                  e1:=(q1/sqr(r1));
+                                   e2:=q2/sqr(r2);
+                                   e3:=(q3/sqr(r3));
+                                     e4:=(q4/sqr(r4));               //betwwen third
+                    sina1:=(y-y1)/r1   ;
+                    sina2:=(y-y2)/r2  ;
+                         sina3:=(y-y3)/r3 ;
+                          sina4:=(y-y4)/r4 ;
+                      cosa1:=(x-x1)/r1;
+                        cosa2:=(x-x2)/r2;
+                          cosa3:=(x-x3)/r3;
+                              cosa4:=(x-x4)/r4;
+                          ex:=e1*cosa1+e3*cosa3+E2*COSA2+e4*cosa4 ;
+                           ey:=e1*sina1+e3*sina3+e2*SINA2+e4*sina4;
+                           e:=sqrt(sqr(ex)+sqr(ey));
+                              paintbox1.Canvas.Pixels[round(x),round(y)]:=claqua;
+                             x:=x+(ey/e);
+                           y:=y-(ex/e) ;
+                           k:=k+1
+                                                                                                end;
+
+                       end;
+                                           end;
+                                   for m := 0 to   3 do
+                                           begin
+                       for i:=1 to linenumber do
+
+                    begin
+                                  z:=(i/linenumber);
+
+
+                            //   label2.Caption:=floattostr(z);
+                            x:=xord[m]+npixel1*cos(3.1415*2*z)        ;
+                            y:=ycord[m]+npixel1*sin(3.1415*2*z)   ;
+                            k:=0;
+                                 while (x<paintbox1.width)  and (y<paintbox1.height) and (x>0) and (y>0) and (k<500) do
+                                      begin
+                                r1:=sqrt(sqr(x-x1)+sqr(y-y1))  ;      //distance betwwen first charge and point
+                                r2:=sqrt(sqr(x-x2)+sqr(y-y2))      ;
+                              r3:=sqrt(sqr(x-x3)+sqr(y-y3)) ;
+                                r4:=sqrt(sqr(x-x4)+sqr(y-y4)) ;   //between second charge             ;
+                                  e1:=(q1/sqr(r1));
+                                   e2:=q2/sqr(r2);
+                                   e3:=(q3/sqr(r3));
+                                     e4:=(q4/sqr(r4));               //betwwen third
+                    sina1:=(y-y1)/r1   ;
+                    sina2:=(y-y2)/r2  ;
+                         sina3:=(y-y3)/r3 ;
+                          sina4:=(y-y4)/r4 ;
+                      cosa1:=(x-x1)/r1;
+                        cosa2:=(x-x2)/r2;
+                          cosa3:=(x-x3)/r3;
+                              cosa4:=(x-x4)/r4;
+                          ex:=e1*cosa1+e3*cosa3+E2*COSA2+e4*cosa4 ;
+                           ey:=e1*sina1+e3*sina3+e2*SINA2+e4*sina4;
+                           e:=sqrt(sqr(ex)+sqr(ey));
+                              paintbox1.Canvas.Pixels[round(x),round(y)]:=clteal;
+                             x:=x+(ex/e);
+                           y:=y+(ey/e) ;
+                           k:=k+1
+                                                                                                end;
+
+                    end;
+
+                                           end;
+end;
+end.
